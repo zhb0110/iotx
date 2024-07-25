@@ -1,7 +1,7 @@
 package com.example.iotx.mqttConfig;
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.iotx.config.RabbitProduct;
+import com.example.iotx.config.RabbitMQProduct;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.springframework.context.annotation.Bean;
@@ -38,7 +38,7 @@ import java.util.Objects;
 public class MqttServer {
 
     @Resource
-    private RabbitProduct rabbitProduct;
+    private RabbitMQProduct rabbitMQProduct;
 
     /**
      * 出站通道
@@ -122,7 +122,7 @@ public class MqttServer {
         handler.setDefaultQos(1);
         //保留标志的默认值。如果没有mqtt_retained找到标题，则使用它。如果提供了自定义，则不使用它converter。这里不启用
         handler.setDefaultRetained(false);
-        //设置发布的主题
+        // TODO:设置发布的主题
         handler.setDefaultTopic(mqttConfig.getPubTopic());
         //当 时true，调用者不会阻塞。相反，它在发送消息时等待传递确认。默认值为false（在确认交付之前发送阻止）。
         handler.setAsync(false);
@@ -148,7 +148,7 @@ public class MqttServer {
      */
     @Bean
     public MessageProducer inbound() {
-        //配置订阅端MqttPahoMessageDrivenChannelAdapter
+        // TODO:配置订阅端MqttPahoMessageDrivenChannelAdapter
         MqttPahoMessageDrivenChannelAdapter adapter =
                 new MqttPahoMessageDrivenChannelAdapter(
                         mqttConfig.getClientId() + "_receive_inbound_", clientFactory(), mqttConfig.getSubTopic().split(","));
@@ -177,37 +177,44 @@ public class MqttServer {
             String topic = Objects.requireNonNull(message.getHeaders().get(MqttHeaders.RECEIVED_TOPIC)).toString();
             log.info("订阅主题为: {}", topic);
             String[] topics = mqttConfig.getSubTopic().split(",");
-            for (String t : topics) {
-                if (t.equals(topic)) {
 
+            // TODO:模糊topic对应：格式：/2001/+/up
+            // 获得通道/网关标识
+            String channelName = topic.split("/").length > 0 ? topic.split("/")[topic.split("/").length - 2] : "";
+            JSONObject payload = JSONObject.parseObject(String.valueOf(message.getPayload()));
+            payload.put("channelName", channelName);
+            rabbitMQProduct.receiveDeviceMSG(payload);
 
-                    if ("topic/devices/upload".equals(t)) {
-                        // 如果是topic/devices/upload，设备上传
-                        // 放入队列生产者
-//                        try {
-                        JSONObject payload = JSONObject.parseObject(String.valueOf(message.getPayload()));
-//                            String s_utf81 = new String(message.getPayload(), "UTF-8");
-//                            String s_utf8 = new String((byte[]) message.getPayload(), "UTF-8");
-//                            JSONObject payload = (JSONObject) message.getPayload();
-                        rabbitProduct.sendDeviceMSG(payload);
-
-                        log.info("接收到该主题消息为: {}", payload);
-//                        } catch (UnsupportedEncodingException e) {
-//                            throw new RuntimeException(e);
-//                        }
-
-
-                    } else if ("topic/devices/rpc/reply/+".equals(t)) {
-                        // TODO:略
-                        //  如果是，设备反馈
-                        // 放入队列生产者--可以用另一个方法
-//                        rabbitProduct.sendMSG(new Msg("设备1", "{\"height\":\"100\",\"width\":\"200\"}", "{\"state\":\"1\"}"));
-                    }
-
-
-                    log.info("接收到该主题消息为: {}", message.getPayload());
-                }
-            }
+            // TODO:固定topic对应
+//            for (String t : topics) {
+//                if (t.equals(topic)) {
+//                    if ("topic/devices/upload".equals(t)) {
+//                        // 如果是topic/devices/upload，设备上传
+//                        // 放入队列生产者
+////                        try {
+//                        JSONObject payload = JSONObject.parseObject(String.valueOf(message.getPayload()));
+////                            String s_utf81 = new String(message.getPayload(), "UTF-8");
+////                            String s_utf8 = new String((byte[]) message.getPayload(), "UTF-8");
+////                            JSONObject payload = (JSONObject) message.getPayload();
+//                        rabbitProduct.sendDeviceMSG(payload);
+//
+//                        log.info("接收到该主题消息为: {}", payload);
+////                        } catch (UnsupportedEncodingException e) {
+////                            throw new RuntimeException(e);
+////                        }
+//
+//
+//                    } else if ("topic/devices/rpc/reply/+".equals(t)) {
+//                        // TODO:略
+//                        //  如果是，设备反馈
+//                        // 放入队列生产者--可以用另一个方法
+////                        rabbitProduct.sendMSG(new Msg("设备1", "{\"height\":\"100\",\"width\":\"200\"}", "{\"state\":\"1\"}"));
+//                    }
+//
+//
+//                    log.info("接收到该主题消息为: {}", message.getPayload());
+//                }
+//            }
         };
     }
 

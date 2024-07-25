@@ -1,4 +1,4 @@
-package com.example.iotx.entity;
+package com.example.iotx.model;
 
 import lombok.Getter;
 import lombok.Setter;

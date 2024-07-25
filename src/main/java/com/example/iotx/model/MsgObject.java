@@ -1,9 +1,9 @@
-package com.example.iotx.config;
+package com.example.iotx.model;
 
 import lombok.Data;
 
 @Data
-public class Msg {
+public class MsgObject {
 
     // 设备名
     String deviceName = "";
@@ -15,7 +15,7 @@ public class Msg {
     String telemetry = "";
 
 
-    public Msg(String deviceName, String attributes, String telemetry) {
+    public MsgObject(String deviceName, String attributes, String telemetry) {
         this.deviceName = deviceName;
         this.attributes = attributes;
         this.telemetry = telemetry;

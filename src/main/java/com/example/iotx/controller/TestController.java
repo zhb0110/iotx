@@ -1,7 +1,7 @@
 package com.example.iotx.controller;
 
-import com.example.iotx.config.Msg;
-import com.example.iotx.config.RabbitProduct;
+import com.example.iotx.model.MsgObject;
+import com.example.iotx.config.RabbitMQProduct;
 import com.example.iotx.mqttConfig.MqttGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 public class TestController {
 
     @Resource
-    private RabbitProduct rabbitProduct;
+    private RabbitMQProduct rabbitMQProduct;
 
     @Autowired
     private MqttGateway mqttGateway;
@@ -26,7 +26,7 @@ public class TestController {
      */
     @RequestMapping(value = "sendMSG", method = {RequestMethod.GET, RequestMethod.POST})
     public void sendMSG() {
-        rabbitProduct.sendMSG(new Msg("设备1", "{\"height\":\"100\",\"width\":\"200\"}", "{\"state\":\"1\"}"));
+        rabbitMQProduct.testSendMSG(new MsgObject("设备1", "{\"height\":\"100\",\"width\":\"200\"}", "{\"state\":\"1\"}"));
     }
 
     /**

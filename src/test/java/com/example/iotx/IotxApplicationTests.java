@@ -1,12 +1,9 @@
 package com.example.iotx;
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.iotx.config.Msg;
-import com.example.iotx.config.RabbitProduct;
+import com.example.iotx.model.MsgObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import javax.annotation.Resource;
 
 @SpringBootTest
 class IotxApplicationTests {
@@ -20,9 +17,9 @@ class IotxApplicationTests {
 
     @Test
     void testJSON() {
-        Msg msg = new Msg("设备1", "{height:100,width:200}", "{state:1}");
+        MsgObject msgObject = new MsgObject("设备1", "{height:100,width:200}", "{state:1}");
 
-        System.out.println(JSONObject.toJSON(msg).toString());
+        System.out.println(JSONObject.toJSON(msgObject).toString());
     }
 
 }

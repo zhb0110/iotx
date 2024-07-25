@@ -9,9 +9,36 @@ mqtt:
     #    subClientId: sub-client-id-9v83pp7c-dev
     clientId: ${random.value}
     #发布的主题--MQTT-默认的消息推送主题，实际可在调用接口时指定
+    # 当topic不固定，可以不配置
     #    pubTopic: pubTopic
     pubTopic: pubTopic
     #订阅的主题
+    # 推荐用模糊匹配的方式订阅topic
     #    subTopic: subTopic,oil-topic,broadcast-topic,fault-topic
-    subTopic: subTopic,topic/devices/upload,topic/devices/rpc/reply/+
+    subTopic: subTopic,topic/devices/upload,topic/devices/rpc/reply/+,/2001/+/up
     completionTimeout: 3000
+
+spring:
+  # redis 配置
+  redis:
+    # 服务器地址
+    host: 127.0.0.1
+    # 默认端口6379
+    port: 6379
+    # 密码，默认为空
+    password: redisPassword!@#
+    # 超时时间
+    timeout: 5000
+    # Redis数据库索引（默认为0）
+    database: 0
+    # 连接池配置
+    lettuce:
+      pool:
+        # 连接池最大连接数（使用负值表示没有限制） 默认 8
+        max-active: 8
+        # 连接池最大阻塞等待时间（使用负值表示没有限制） 默认 -1
+        max-wait: -1
+        # 连接池中的最大空闲连接 默认 8
+        max-idle: 8
+        # 连接池中的最小空闲连接 默认 0
+        min-idle: 0
