@@ -1,5 +1,6 @@
 package com.example.iotx;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,7 +8,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * mapper增加配置，否则无法扫描到，可以单独做一个MybatisPlusConfigurer
+ */
 @SpringBootApplication
+@MapperScan("com.example.iotx.mapper")
+//@MapperScan("com.example.**.mapper") 也可以模糊对应的方式
 public class IotxApplication implements CommandLineRunner {
 
     public static void main(String[] args) {

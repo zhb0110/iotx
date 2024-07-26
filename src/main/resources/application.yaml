@@ -19,6 +19,9 @@ mqtt:
     completionTimeout: 3000
 
 spring:
+  profiles:
+    # 运行模式：默认dev
+    active: dev
   # redis 配置
   redis:
     # 服务器地址

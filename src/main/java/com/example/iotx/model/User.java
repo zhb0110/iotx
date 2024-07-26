@@ -1,88 +1,30 @@
 package com.example.iotx.model;
 
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.example.iotx.enums.UserSexEnum;
+import lombok.Data;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+// TODO:不写有问题吗？
+// 最好写：Serializable:序列化给我们提供了一种技术，用于保存对象的变量和传输。虽然也可以使用别的一些方法实现同样的功能，但是Java给我们提供的方法使用起来是非常方便的。
+@Data
+@TableName("user")
 public class User implements Serializable {
 
 
     private static final long serialVersionUID = 1L;
+
+    @TableId(type = IdType.AUTO)
     private Long id;
+    private String email;
     private String userName;
     private String password;
-    private String email;
-    private String nickname;
-    private String regTime;
+    private String nickName;
+    private LocalDateTime regTime;
+    private UserSexEnum userSex;
 
-    public User() {
-        super();
-    }
-
-    public User(String email, String nickname, String password, String userName, String regTime) {
-        super();
-        this.email = email;
-        this.nickname = nickname;
-        this.password = password;
-        this.userName = userName;
-        this.regTime = regTime;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public String getRegTime() {
-        return regTime;
-    }
-
-    public void setRegTime(String regTime) {
-        this.regTime = regTime;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", regTime='" + regTime + '\'' +
-                '}';
-    }
 }
