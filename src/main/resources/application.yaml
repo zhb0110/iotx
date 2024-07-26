@@ -18,6 +18,21 @@ mqtt:
     subTopic: subTopic,topic/devices/upload,topic/devices/rpc/reply/+,/2001/+/up
     completionTimeout: 3000
 
+# mybaits-plus配置--放在这里才能识别，因为不属于org.springframework.boot体系下
+mybatis-plus:
+  mapper-locations: classpath:mybatis/mapper/*Mapper.xml
+  global-config:
+    banner: false
+    db-config:
+      id-type: 0
+      field-strategy: 1
+      table-underline: true
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
+
+# 只有groupid为org.springframework.boot的才能识别
 spring:
   profiles:
     # 运行模式：默认dev

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -35,11 +36,11 @@ public class UserController {
         return user;
     }
 
-//    @RequestMapping("/getUsers")
-//    public List<User> getUsers() {
-//        List<User> users = userMapper.selectList(new QueryWrapper<User>().eq("id", DateUtil.year(time)));
-//        return users;
-//    }
+    @RequestMapping("/getUsers")
+    public List<User> getUsers() {
+        List<User> users = userMapper.getAll();
+        return users;
+    }
 
     @RequestMapping("/add")
     public void save(User user) {

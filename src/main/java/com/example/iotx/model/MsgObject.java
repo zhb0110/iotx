@@ -6,13 +6,13 @@ import lombok.Data;
 public class MsgObject {
 
     // 设备名
-    String deviceName = "";
+    private String deviceName;
 
     // 属性
-    String attributes = "";
+    private String attributes;
 
     // 实时值
-    String telemetry = "";
+    private String telemetry;
 
 
     public MsgObject(String deviceName, String attributes, String telemetry) {
