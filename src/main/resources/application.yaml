@@ -17,6 +17,12 @@ mqtt:
     #    subTopic: subTopic,oil-topic,broadcast-topic,fault-topic
     subTopic: subTopic,topic/devices/upload,topic/devices/rpc/reply/+,/2001/+/up
     completionTimeout: 3000
+    #    设置默认的QoS级别
+    qosLevel: 1
+    #   是否保留消息
+    retained: false
+    keepAliveTime:  60
+
 
 # mybaits-plus配置--放在这里才能识别，因为不属于org.springframework.boot体系下
 mybatis-plus:

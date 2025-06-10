@@ -5,7 +5,6 @@ import com.example.iotx.config.RabbitMQProduct;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.integration.channel.DirectChannel;
 import org.springframework.integration.core.MessageProducer;
@@ -34,7 +33,8 @@ import java.util.Objects;
  * @date 2022/08/08
  */
 @Slf4j
-@Configuration
+// TODO:和MqttPublisher功能重合,，本类不太推荐
+//@Configuration
 public class MqttServer {
 
     @Resource

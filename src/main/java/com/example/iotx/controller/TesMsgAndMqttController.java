@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
+/**
+ * 测试消息队列和mqtt
+ */
 @RestController
-public class TestController {
+@RequestMapping("/testMsgAndMqtt")
+public class TesMsgAndMqttController {
 
     @Resource
     private RabbitMQProduct rabbitMQProduct;

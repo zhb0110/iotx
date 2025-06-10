@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/device")
-public class DeviceController {
+public class ControlDeviceByMqttController {
 
     @Autowired
     private MqttGateway mqttGateway;

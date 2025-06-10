@@ -9,15 +9,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
+ * mqttv3直接测试
+ *
  * @Author Zhb
  * @create 2025/6/9 15:41
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class MqttExample {
-
-    @Autowired
-    private UserMapper userMapper;
 
     @Test
     public void MqttExample() {
@@ -34,6 +33,8 @@ public class MqttExample {
             // 连接选项
             MqttConnectOptions connOpts = new MqttConnectOptions();
             connOpts.setCleanSession(true);
+            connOpts.setUserName("dwy_mqtt"); // 设置用户名
+            connOpts.setPassword("dwy@MQTT123".toCharArray()); // 设置密码
 
             // 设置回调
             client.setCallback(new MqttCallback() {
