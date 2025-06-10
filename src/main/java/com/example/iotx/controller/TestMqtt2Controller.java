@@ -25,7 +25,7 @@ public class TestMqtt2Controller {
     @RequestMapping(value = "sendToMqtt", method = {RequestMethod.GET, RequestMethod.POST})
     public void mqttTest() throws MqttException {
 //        mqttGateway.sendToMqtt("subTopic", "哈哈");
-        mqttPublisher.publish("hello world");
+        mqttPublisher.publish("/2001/abc/down", "hello world");
 //        mqttPublisher.disconnect();
     }
 }

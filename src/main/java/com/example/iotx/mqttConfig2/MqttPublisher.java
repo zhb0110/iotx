@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDateTime;
 
 @Configuration
 public class MqttPublisher {
@@ -153,12 +154,35 @@ public class MqttPublisher {
 
     }
 
-    public void publish(String payload) throws MqttException {
+    /**
+     * 发布广播消息
+     *
+     * @param payload
+     * @throws MqttException
+     */
+    public void publishTime(String payload) throws MqttException {
+        MqttMessage message = new MqttMessage(LocalDateTime.now().toString().getBytes());
+        message.setQos(qosLevel);
+        message.setRetained(retained);
+
+//        设置遗嘱消息。qos=2: 精确一次（最可靠），retained 如果为 true，则服务器会保留该主题的最后一条消息，并在有新订阅者订阅该主题时立即发送给他们
+        client.publish(pubTopic, message); // 使用默认主题发布消息
+        System.out.println("Published message: " + payload);
+    }
+
+    /**
+     * 定制topic发布消息
+     *
+     * @param topic
+     * @param payload
+     * @throws MqttException
+     */
+    public void publish(String topic, String payload) throws MqttException {
         MqttMessage message = new MqttMessage(payload.getBytes());
         message.setQos(qosLevel);
         message.setRetained(retained);
 
-        client.publish(pubTopic, message); // 使用默认主题发布消息
+        client.publish(topic, message); // 使用指定主题发布消息
         System.out.println("Published message: " + payload);
     }
 
