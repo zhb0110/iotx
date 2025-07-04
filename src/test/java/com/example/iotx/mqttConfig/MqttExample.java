@@ -1,10 +1,8 @@
-package com.example.iotx.mqttConfig2;
+package com.example.iotx.mqttConfig;
 
-import com.example.iotx.mapper.UserMapper;
 import org.eclipse.paho.client.mqttv3.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 

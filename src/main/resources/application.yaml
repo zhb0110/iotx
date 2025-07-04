@@ -1,3 +1,4 @@
+# mqtt配置
 mqtt:
   config:
     username: admin
@@ -16,12 +17,13 @@ mqtt:
     # 推荐用模糊匹配的方式订阅topic
     #    subTopic: subTopic,oil-topic,broadcast-topic,fault-topic
     subTopic: subTopic,topic/devices/upload,topic/devices/rpc/reply/+,/2001/+/up
-    completionTimeout: 3000
+    # 超时时间，单位：秒
+    completionTimeout: 30
     #    设置默认的QoS级别
     qosLevel: 1
     #   是否保留消息
     retained: false
-    #    连接间隔
+    #    连接间隔，单位秒
     keepAliveTime: 60
 
 

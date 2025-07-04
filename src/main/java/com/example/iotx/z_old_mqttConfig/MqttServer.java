@@ -1,4 +1,4 @@
-package com.example.iotx.mqttConfig;
+package com.example.iotx.z_old_mqttConfig;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.iotx.config.RabbitMQProduct;

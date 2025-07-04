@@ -42,9 +42,8 @@ iot参考学习thingsboard源码
    10. 用户对象
 8. mqttConfig
    9. Mqtt配置
-   10. Mqtt网关
    11. Mqtt服务
-9. redisConfig
+10. redisConfig
    10. Redis配置
    11. Session配置
 10. threadPoolConfig

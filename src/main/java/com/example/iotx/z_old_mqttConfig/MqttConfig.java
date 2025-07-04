@@ -1,7 +1,6 @@
-package com.example.iotx.mqttConfig;
+package com.example.iotx.z_old_mqttConfig;
 
 import lombok.Data;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Component;
  * mqtt配置类
  */
 @Data
-@ConfigurationProperties(prefix = "mqtt.config")
+//@ConfigurationProperties(prefix = "mqtt.config")
 @Component
 public class MqttConfig {
 

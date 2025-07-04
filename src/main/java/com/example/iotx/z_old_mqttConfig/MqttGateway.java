@@ -1,4 +1,4 @@
-package com.example.iotx.mqttConfig;
+package com.example.iotx.z_old_mqttConfig;
 
 import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.integration.mqtt.support.MqttHeaders;

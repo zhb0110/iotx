@@ -1,13 +1,12 @@
-package com.example.iotx.mqttConfig2;
+package com.example.iotx.z_old_mqttConfig;
 
 import org.eclipse.paho.client.mqttv3.*;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 
-@Configuration
+//@Configuration
 public class MqttPublisher {
 
     @Value("${mqtt.config.hostUrl}")
